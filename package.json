@@ -4,13 +4,18 @@
   "description": "",
   "main": "app.js",
   "type": "module",
+  "dotenv": "^16.0.1",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "selfcore": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
