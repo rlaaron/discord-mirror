@@ -1,14 +1,14 @@
 const { Client } = require("discord.js-selfbot-v13")
 const {WebhookClient} = require("discord.js")
 require('dotenv').config();
-let usertoken = process.env.TOKEN;
-const url = process.env.WEBHOOK
+
+const usertoken = process.env.TOKEN;
+const id1 = process.env.ID1;
+const id2 = process.env.ID2;
 const webhook1 = new WebhookClient({id: "1013201604326989964", token: "im2xMvDvflllcdmvcKNDjimwhExaQmJ7EkWmoi-dbiFM7fmjiIfcxJr9LsalCTglINVI"});
 const webhook2 = new WebhookClient({id: "1013532925364535346", token: "AAEZFoOGSeTcJP8wi6Ijc_do-1HpkVKQs-Zph3zZAX-6kDZAxlhHCeOSkWN_i5GqiCan"});
-const generalID = ['954172076015648851', "956376830523347004"]
-// const webhooks = [webhook1, webhook2]
-let webhook5;
-const webhooks = [webhook5 = new WebhookClient({id: "1013532925364535346", token: "AAEZFoOGSeTcJP8wi6Ijc_do-1HpkVKQs-Zph3zZAX-6kDZAxlhHCeOSkWN_i5GqiCan"})]
+const generalID = [ id1, id2]
+const webhooks = [webhook1, webhook2]
 
 
 const client = new Client();
