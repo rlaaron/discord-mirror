@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
   "dotenv": "^16.0.1",
   "scripts": {
     "test": "node index",
@@ -13,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "discord.js": "^14.3.0",
+    "discord.js-selfbot-v13": "^2.6.7",
+    "dotenv": "^16.0.1",
     "selfcore": "^1.1.1"
   },
   "devDependencies": {
