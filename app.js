@@ -1,15 +1,15 @@
 /* Importing the discord.js-selfbot-v13 and discord.js libraries. */
 const { Client } = require("discord.js-selfbot-v13")
 require('dotenv').config();
-const {webhook1, webhook2, webhookErr, id1, id2} = require('./webhook.js');
+const {webhook1, webhook2, webhookErr, id1, id2, IDgeneral, IDbot } = require('./webhook.js');
 
 /* Getting the values from the .env file. */
 const usertoken = process.env.TOKEN;
 // add ids to the array
-const generalID = [id1, id2]
+const generalID = [id1, id2, IDgeneral];
 // add webhooks to the array
-const webhooks = [webhook1, webhook2]
-
+const webhooks = [webhook1, webhook2, webhook1]
+const botID = IDbot;
 // Creating a new client of selfbot.
 const client = new Client();
 // login to discord with the token
@@ -29,7 +29,7 @@ client.on("ready", ready => {
 client.on("messageCreate", messageCreate => {
     /* Checking if the message is from a bot. If it is, it will return and not send the message to the
     webhook. */
-    if (messageCreate.author.bot) return;
+    // if (messageCreate.author.bot) return;
     /* Checking if the message is from the chat that you want to listen to. If it is, it will send the
     message to the webhook. */
     for (let i = 0; i < generalID.length; i++) {
@@ -42,11 +42,14 @@ client.on("messageCreate", messageCreate => {
             contImg ? messageCreate.content? content += `\n${contImg}` : content = contImg: null; 
             // check if is a pinned message
             messageCreate.type === 'CHANNEL_PINNED_MESSAGE' ? content = `:pushpin: PINNED_MESSAGE` : null;
+            // check if is clicked message
+            messageCreate.authorId == botID && messageCreate.type == "REPLY" ? content = messageCreate.cleanContent : messageCreate.clickButton(messageCreate.components[0].components[0].customId);
+
             content.length > 2000 ? content = content.slice(0, 2000) : null;
             // send the message to the webhook
             try{
                 if (typeof content !== 'string') throw new error(errorMessage);
-                    webhooks[i].send({content, username, avatarURL });
+                messageCreate.author.bot ? webhooks[i].send({content, username }) : webhooks[i].send({content, username, avatarURL });
             }catch(err){
                 let errString = JSON.stringify(content);
                 errString = `Error: ${err}\n Objeto: \n${errString}`;
