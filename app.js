@@ -1,15 +1,11 @@
 /* Importing the discord.js-selfbot-v13 and discord.js libraries. */
 const { Client } = require("discord.js-selfbot-v13")
 require('dotenv').config();
-const {webhook1, webhook2, webhookErr, id1, id2, IDgeneral, IDbot } = require('./webhook.js');
+// const {webhook1, webhook2, webhookErr, id1, id2, IDgeneral, IDbot } = require('./webhook.js');
+const { generalID, webhooks, webhookErr, IDbot } = require('./webhook.js');
 
 /* Getting the values from the .env file. */
 const usertoken = process.env.TOKEN;
-// add ids to the array
-const generalID = [id1, id2, IDgeneral];
-// add webhooks to the array
-const webhooks = [webhook1, webhook2, webhook1]
-const botID = IDbot;
 // Creating a new client of selfbot.
 const client = new Client();
 // login to discord with the token
@@ -43,8 +39,8 @@ client.on("messageCreate", messageCreate => {
             // check if is a pinned message
             messageCreate.type === 'CHANNEL_PINNED_MESSAGE' ? content = `:pushpin: PINNED_MESSAGE` : null;
             // check if is clicked message
-            messageCreate.authorId == botID && messageCreate.type == "REPLY" ? content = messageCreate.cleanContent : messageCreate.clickButton(messageCreate.components[0].components[0].customId);
-
+            messageCreate.authorId == IDbot  ?  messageCreate.type == "REPLY" ? content = messageCreate.cleanContent : messageCreate.clickButton(messageCreate.components[0].components[0].customId) : null;
+            // check if a message is to length
             content.length > 2000 ? content = content.slice(0, 2000) : null;
             // send the message to the webhook
             try{
