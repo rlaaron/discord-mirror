@@ -43,9 +43,20 @@ client.on("messageCreate", messageCreate => {
             // check if a message is to length
             content.length > 2000 ? content = content.slice(0, 2000) : null;
             // send the message to the webhook
+            // console.log(messageCreate);
+            // console.log(messageCreate);
+            // console.log(messageCreate.mentions.users.first().username);
+            // console.log(JSON.stringify(messageCreate.mentions.users.first().phoneNumber));
+            // console.log(messageCreate.mentions.users.first().emailAddress);
+            // messageCreate.mentions.roles.first().name ? content = `rol: ${messageCreate.mentions.roles.first().name} \n ${content}`   : null;
+            // messageCreate.mentions.roles.first().name ? content = content.replace("<@&1029588575995564042>", "<@&1036420175978827799>") : null;
+            // console.log(messageCreate.mentions.roles.first().id);
+            // console.log(content);
+            // 1029588575995564042
             try{
                 if (typeof content !== 'string') throw new error(errorMessage);
-                messageCreate.author.bot ? webhooks[i].send({content, username }) : webhooks[i].send({content, username, avatarURL });
+                // messageCreate.author.bot ? webhooks[i].send({content, username }) : webhooks[i].send({content, username, avatarURL });
+                webhooks[i].send({content, username, avatarURL });
             }catch(err){
                 let errString = JSON.stringify(content);
                 errString = `Error: ${err}\n Objeto: \n${errString}`;
